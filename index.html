@@ -4,16 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Color Catch Deluxe</title>
-<link rel="manifest" href="manifest.json">
+
+<link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#4facfe">
-   <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-      <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-</script>
+
     body{
         overflow:hidden;
         font-family:Arial, sans-serif;
@@ -82,7 +85,15 @@ if ("serviceWorker" in navigator) {
 </style>
 </head>
 <body>
-
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js")
+            .then(reg => console.log("Service Worker Registered", reg))
+            .catch(err => console.log("Service Worker Error", err));
+    });
+}
+</script>
 <div id="ui">
     Score: <span id="score">0</span> |
     Combo: <span id="combo">1x</span> |
